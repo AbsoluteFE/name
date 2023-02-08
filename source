@@ -1,9 +1,3 @@
-local Whitelisted = {
-	2660393327,
-	1994962657,
-	3730422925,
-}
-
 if game.PlaceId == 6884319169  then
 
 	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -13,12 +7,6 @@ if game.PlaceId == 6884319169  then
 	local Players = game.Players
 	local TeleportService = game:GetService("TeleportService")
 	local PlaceId, JobId = game.PlaceId, game.JobId
-	
-	if table.find(Whitelisted, plr.UserId) then
-		print("Whitelist!")
-	else
-		plr:Kick("Contact Absolute to get Whitelisted!")
-	end
 	
 	-- Functions
 	
