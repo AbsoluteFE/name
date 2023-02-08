@@ -161,15 +161,6 @@ if game.PlaceId == 6884319169  then
 		end    
 	})
 	
-	ToolsTab:AddDropdown({
-		Name = "Players",
-		Default = "1",
-		Options = {},
-		Callback = function(Value)
-			
-		end 
-	})
-	
 	-- Teleport Tab
 	
 	local TeleportsTab = Window:MakeTab({
