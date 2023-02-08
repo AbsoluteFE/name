@@ -1,0 +1,224 @@
+local Whitelisted = {
+	2660393327,
+	5695839335,
+}
+
+if game.PlaceId == 6884319169  then
+
+	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+	local Window = OrionLib:MakeWindow({Name = "Absolute's FE Mic Up", HidePremium = true, SaveConfig = false, ConfigFolder = "OrionTest"})
+	
+	local plr = game.Players.LocalPlayer
+	local Players = game.Players
+	local TeleportService = game:GetService("TeleportService")
+	local PlaceId, JobId = game.PlaceId, game.JobId
+	
+	if table.find(Whitelisted, plr.UserId) then
+		print("Whitelist!")
+	else
+		plr:Kick("Contact Absolute to get Whitelisted!")
+	end
+	
+	-- Functions
+	
+	function respawn(plr)
+		local char = plr.Character
+		if char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid"):ChangeState(15) end
+		char:ClearAllChildren()
+		local newChar = Instance.new("Model")
+		newChar.Parent = workspace
+		plr.Character = newChar
+		wait()
+		plr.Character = char
+		newChar:Destroy()
+	end
+	
+	-- Server Tab
+	
+	local ServerTab = Window:MakeTab({
+		Name = "Server",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+	
+	local SectionMain = ServerTab:AddSection({
+		Name = "Scripts"
+	})
+	
+	ServerTab:AddButton({
+		Name = "Rejoin",
+		Callback = function()
+			if #Players:GetPlayers() <= 1 then
+				Players.LocalPlayer:Kick("\nRejoining...")
+				wait()
+				TeleportService:Teleport(PlaceId, Players.LocalPlayer)
+			else
+				TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer)
+			end
+		end    
+	})
+	
+	-- Main Tab
+	
+	local MainTab = Window:MakeTab({
+		Name = "Main",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	local SectionMain = MainTab:AddSection({
+		Name = "Scripts"
+	})
+
+	MainTab:AddButton({
+		Name = "Infinite Yield",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+		end    
+	})
+	
+	-- Player Tab
+	
+	local PlayerTab = Window:MakeTab({
+		Name = "Player",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+	
+	local SectionPlayer = PlayerTab:AddSection({
+		Name = "Scripts"
+	})
+	
+	PlayerTab:AddButton({
+		Name = "Refresh character",
+		Callback = function()
+			local refreshCmd = false
+			if refreshCmd == false then
+			refreshCmd = true
+			local Human = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid", true)
+			local pos = Human and Human.RootPart and Human.RootPart.CFrame
+			local pos1 = workspace.CurrentCamera.CFrame
+			respawn(game.Players.LocalPlayer)
+			task.spawn(function()
+			game.Players.LocalPlayer.CharacterAdded:Wait():WaitForChild("Humanoid").RootPart.CFrame, workspace.CurrentCamera.CFrame = pos, wait() and pos1
+			wait(2)
+			refreshCmd = false
+				end)
+			end
+		end
+	})
+	
+	PlayerTab:AddSlider({
+		Name = "Walkspeed (Default 16)",
+		Min = 0,
+		Max = 150,
+		Default = 16,
+		Color = Color3.fromRGB(255,255,255),
+		Increment = 1,
+		ValueName = "Walkspeed",
+		Callback = function(Value)
+			plr.Character.Humanoid.WalkSpeed = Value
+		end    
+	})
+	
+	PlayerTab:AddSlider({
+		Name = "JumpHeight",
+		Min = 7.2,
+		Max = 150,
+		Default = 7.2,
+		Color = Color3.fromRGB(255,255,255),
+		Increment = 1,
+		ValueName = "JumpHeight",
+		Callback = function(Value)
+			plr.Character.Humanoid.JumpHeight = Value
+		end    
+	})
+	
+	-- Tools Tab
+	
+	local ToolsTab = Window:MakeTab({
+		Name = "Tools",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+
+	local SectionTools = ToolsTab:AddSection({
+		Name = "Scripts"
+	})
+	
+	ToolsTab:AddButton({
+		Name = "Equip tools",
+		Callback = function()
+			for i,v in pairs(plr:FindFirstChildOfClass("Backpack"):GetChildren()) do
+				if v:IsA("Tool") or v:IsA("HopperBin") then
+					v.Parent = plr.Character
+				end
+			end
+		end    
+	})
+	
+	ToolsTab:AddButton({
+		Name = "Block tools",
+		Callback = function()
+			for _,v in pairs(plr.Character:GetChildren()) do
+				if v:IsA("Tool") or v:IsA("HopperBin") then
+					for i,c in pairs(v:GetDescendants()) do
+						if c:IsA("SpecialMesh") then
+							c:Destroy()
+						end
+					end
+				end
+			end
+		end    
+	})
+	
+	ToolsTab:AddDropdown({
+		Name = "Players",
+		Default = "1",
+		Options = {},
+		Callback = function(Value)
+			
+		end 
+	})
+	
+	-- Teleport Tab
+	
+	local TeleportsTab = Window:MakeTab({
+		Name = "Teleports",
+		Icon = "rbxassetid://4483345998",
+		PremiumOnly = false
+	})
+	
+	local SectionTeleports = TeleportsTab:AddSection({
+		Name = "Teleports"
+	})
+	
+	TeleportsTab:AddButton({
+		Name = "Donut shop",
+		Callback = function()
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-55.75, 5.98, -64.32))
+		end    
+	})
+	
+	TeleportsTab:AddButton({
+		Name = "Vc rooms",
+		Callback = function()
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(221.08, 5.98, 32.60))
+		end    
+	})
+	
+	TeleportsTab:AddButton({
+		Name = "Toilets",
+		Callback = function()
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-59.25, 5.98, 109.29))
+		end    
+	})
+	
+	TeleportsTab:AddButton({
+		Name = "Tower",
+		Callback = function()
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(60.50, 314.29, 208.49))
+		end    
+	})
+	
+end
