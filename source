@@ -1,6 +1,7 @@
 local Whitelisted = {
 	2660393327,
 	1994962657,
+	3730422925,
 }
 
 if game.PlaceId == 6884319169  then
