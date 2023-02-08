@@ -136,6 +136,17 @@ if game.PlaceId == 6884319169  then
 	})
 	
 	ToolsTab:AddButton({
+		Name = "Take near tools (MUST HAVE GAMEPASS!)",
+		Callback = function()
+			for _, descendant in ipairs(workspace:GetDescendants()) do
+				if descendant:IsA("ProximityPrompt") then
+					fireproximityprompt(descendant)
+				end
+			end
+		end
+	})
+	
+	ToolsTab:AddButton({
 		Name = "Equip tools",
 		Callback = function()
 			for i,v in pairs(plr:FindFirstChildOfClass("Backpack"):GetChildren()) do
@@ -161,6 +172,47 @@ if game.PlaceId == 6884319169  then
 		end    
 	})
 	
+	ToolsTab:AddButton({
+		Name = "All tools",
+		Callback = function()
+
+			local cooldown = 0.00001
+				
+			local oldpos = plr.Character.HumanoidRootPart.CFrame.Position
+			
+			wait(cooldown)
+			
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-55.8264771, 5.98518515, -64.8404694))
+			for _, descendant in ipairs(workspace:GetDescendants()) do
+					if descendant:IsA("ProximityPrompt") then
+					fireproximityprompt(descendant)
+				end
+			end
+			
+				wait(cooldown)
+			
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-39.3226852, 10.0165596, 247.021255))
+			for _, descendant in ipairs(workspace:GetDescendants()) do
+					if descendant:IsA("ProximityPrompt") then
+					fireproximityprompt(descendant)
+				end
+			end
+			
+				wait(cooldown)
+			
+			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-107.488388, 4.21244812, -82.7212601))
+			for _, descendant in ipairs(workspace:GetDescendants()) do
+					if descendant:IsA("ProximityPrompt") then
+					fireproximityprompt(descendant)
+				end
+			end
+			
+				wait(cooldown)
+			
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(oldpos))
+		end
+	})
+	
 	-- Teleport Tab
 	
 	local TeleportsTab = Window:MakeTab({
@@ -173,32 +225,29 @@ if game.PlaceId == 6884319169  then
 		Name = "Teleports"
 	})
 	
-	TeleportsTab:AddButton({
-		Name = "Donut shop",
-		Callback = function()
-			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-55.75, 5.98, -64.32))
+	TeleportsTab:AddDropdown({
+		Name = "Select target",
+		Default = "Donut shop",
+		Options = {"Donut shop", "Slide", "Rooms", "Toilets", "Table"},
+		Callback = function(Value)
+			TpPlace = Value
 		end    
 	})
 	
 	TeleportsTab:AddButton({
-		Name = "Vc rooms",
+		Name = "Goto",
 		Callback = function()
-			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(221.08, 5.98, 32.60))
+			if TpPlace == "Donut shop" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-55.8264771, 5.98518515, -64.8404694))
+			elseif TpPlace == "Slide" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(25.6119423, 285.392365, 193.965881))
+			elseif TpPlace == "Rooms" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(221.118439, 5.98518515, 34.9325447))
+			elseif TpPlace == "Toilets" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-59.4107895, 5.98518515, 109.871864))
+			elseif TpPlace == "Table" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(27.1048203, 8.79913902, 87.6047058))
+			end
 		end    
 	})
-	
-	TeleportsTab:AddButton({
-		Name = "Toilets",
-		Callback = function()
-			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-59.25, 5.98, 109.29))
-		end    
-	})
-	
-	TeleportsTab:AddButton({
-		Name = "Tower",
-		Callback = function()
-			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(60.50, 314.29, 208.49))
-		end    
-	})
-	
 end
