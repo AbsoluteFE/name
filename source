@@ -136,7 +136,7 @@ if game.PlaceId == 6884319169  then
 	})
 	
 	ToolsTab:AddButton({
-		Name = "Take near tools (MUST HAVE GAMEPASS!)",
+		Name = "Fire proximity prompts",
 		Callback = function()
 			for _, descendant in ipairs(workspace:GetDescendants()) do
 				if descendant:IsA("ProximityPrompt") then
@@ -176,7 +176,7 @@ if game.PlaceId == 6884319169  then
 		Name = "All tools",
 		Callback = function()
 
-			local cooldown = 0.1
+			local cooldown = 0.00001
 				
 			local oldpos = plr.Character.HumanoidRootPart.CFrame.Position
 			
