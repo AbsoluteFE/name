@@ -191,15 +191,6 @@ if game.PlaceId == 6884319169  then
 			
 				wait(cooldown)
 			
-			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-39.3226852, 10.0165596, 247.021255))
-			for _, descendant in ipairs(workspace:GetDescendants()) do
-					if descendant:IsA("ProximityPrompt") then
-					fireproximityprompt(descendant)
-				end
-			end
-			
-				wait(cooldown)
-			
 			plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-107.488388, 4.21244812, -82.7212601))
 			for _, descendant in ipairs(workspace:GetDescendants()) do
 					if descendant:IsA("ProximityPrompt") then
@@ -228,7 +219,7 @@ if game.PlaceId == 6884319169  then
 	TeleportsTab:AddDropdown({
 		Name = "Select target",
 		Default = "Donut shop",
-		Options = {"Donut shop", "Slide", "Rooms", "Toilets", "Table"},
+		Options = {"Donut shop", "Slide", "Rooms", "Toilets", "Table", "Room 1", "Room 2"},
 		Callback = function(Value)
 			TpPlace = Value
 		end    
@@ -247,6 +238,10 @@ if game.PlaceId == 6884319169  then
 				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(-59.4107895, 5.98518515, 109.871864))
 			elseif TpPlace == "Table" then
 				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(27.1048203, 8.79913902, 87.6047058))
+			elseif TpPlace == "Room 1" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(4221, 23, 61))
+			elseif TpPlace == "Room 2" then
+				plr.Character.HumanoidRootPart:PivotTo(CFrame.new(6221, 42, 61))
 			end
 		end    
 	})
